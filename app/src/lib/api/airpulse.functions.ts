@@ -2,6 +2,10 @@ import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import { bindings } from "../bindings.server";
 
+type PublicReportRow = { id: number; city: string; area: string; latitude: number | null; longitude: number | null; category: string; feeling: string; note: string; created_at: string };
+type PublicCommentRow = { id: number; report_id: number; display_name: string; body: string; created_at: string };
+type PendingReportRow = { id: number; city: string; area: string; category: string; feeling: string; note: string; created_at: string };
+
 const reportInput = z.object({
   city: z.string().trim().min(2).max(80),
   area: z.string().trim().min(2).max(80),
@@ -21,10 +25,10 @@ export const getCommunityReports = createServerFn({ method: "POST" })
   .validator(z.object({ limit: z.number().int().min(1).max(40).default(20) }))
   .handler(async ({ data }) => {
     const { DB } = bindings();
-    if (!DB) return { reports: [], storageReady: false };
+    if (!DB) return { reports: [] as PublicReportRow[], storageReady: false };
     const reports = await DB.prepare(
       "SELECT id, city, area, latitude, longitude, category, feeling, note, created_at FROM neighborhood_reports WHERE status = 'approved' ORDER BY created_at DESC LIMIT ?",
-    ).bind(data.limit).all();
+    ).bind(data.limit).all<PublicReportRow>();
     return { reports: reports.results ?? [], storageReady: true };
   });
 
@@ -32,10 +36,10 @@ export const getReportComments = createServerFn({ method: "POST" })
   .validator(z.object({ reportId: z.number().int().positive() }))
   .handler(async ({ data }) => {
     const { DB } = bindings();
-    if (!DB) return { comments: [], storageReady: false };
+    if (!DB) return { comments: [] as PublicCommentRow[], storageReady: false };
     const comments = await DB.prepare(
       "SELECT id, report_id, display_name, body, created_at FROM report_comments WHERE report_id = ? AND status = 'approved' ORDER BY created_at ASC LIMIT 60",
-    ).bind(data.reportId).all();
+    ).bind(data.reportId).all<PublicCommentRow>();
     return { comments: comments.results ?? [], storageReady: true };
   });
 
@@ -69,10 +73,10 @@ export const getModerationQueue = createServerFn({ method: "POST" })
   .validator(z.object({ key: z.string().min(1).max(180) }))
   .handler(async ({ data }) => {
     const { DB, AIRPULSE_MODERATOR_KEY } = bindings() as ReturnType<typeof bindings> & { AIRPULSE_MODERATOR_KEY?: string };
-    if (!AIRPULSE_MODERATOR_KEY || data.key !== AIRPULSE_MODERATOR_KEY) return { ok: false, reports: [], comments: [] };
-    if (!DB) return { ok: true, reports: [], comments: [] };
-    const reports = await DB.prepare("SELECT id, city, area, category, feeling, note, created_at FROM neighborhood_reports WHERE status = 'pending' ORDER BY created_at ASC LIMIT 100").all();
-    const comments = await DB.prepare("SELECT id, report_id, display_name, body, created_at FROM report_comments WHERE status = 'pending' ORDER BY created_at ASC LIMIT 100").all();
+    if (!AIRPULSE_MODERATOR_KEY || data.key !== AIRPULSE_MODERATOR_KEY) return { ok: false, reports: [] as PendingReportRow[], comments: [] as PublicCommentRow[] };
+    if (!DB) return { ok: true, reports: [] as PendingReportRow[], comments: [] as PublicCommentRow[] };
+    const reports = await DB.prepare("SELECT id, city, area, category, feeling, note, created_at FROM neighborhood_reports WHERE status = 'pending' ORDER BY created_at ASC LIMIT 100").all<PendingReportRow>();
+    const comments = await DB.prepare("SELECT id, report_id, display_name, body, created_at FROM report_comments WHERE status = 'pending' ORDER BY created_at ASC LIMIT 100").all<PublicCommentRow>();
     return { ok: true, reports: reports.results ?? [], comments: comments.results ?? [] };
   });
 
