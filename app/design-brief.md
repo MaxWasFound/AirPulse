@@ -1,0 +1,19 @@
+# AirPulse — concept brief
+
+- **Design read:** A public-interest air intelligence product for curious residents, students, and local communities who need to understand what the air is doing without confusing measured evidence with modeled estimates or personal perception.
+- **Concept spine:** The living atmosphere as a readable signal. Fine contour bands, floating particulate points, and calm instrument-like panels turn scattered readings into a shared neighborhood picture.
+- **Delivery tier:** Cinema, with the scroll-scrub journey as the opening statement and a working data dashboard below.
+- **Animation mode:** animated-website
+- **Journey shape:** single-shot. One uninterrupted atmospheric close-in moves from regional atmosphere to particle detail; chapter copy overlays the film and gives the page a clear narrative arc.
+- **Journey:** (1) Atmosphere / “Air has a story” / follow the invisible signal; (2) Evidence / “Know what is measured” / separate station readings from model estimates; (3) Context / “Weather changes the picture” / interpret wind and humidity alongside air data; (4) Neighborhood / “What people notice matters” / community reports add local context without pretending to be scientific measurements.
+- **World grammar:** Dark ink-green scientific editorial world, deep forest teal surfaces, restrained pale mint highlights, delicate suspended particles, translucent atmospheric layers, fine grain, soft side lighting, clean negative space, no text in the film.
+- **Mobile framing:** All key particles and the abstract sphere remain center-safe; mobile clip capped at 720px height with no important content at the outer edges.
+- **Palette:** Ink green #101E1B, forest teal #183A32, warm pale #F0F4E9, muted sage #9DAFA2, mint-lime #B7F36B, and hairline green #2A433A. This is grounded, nature-led, and intentionally avoids neon-tech and orange-on-black conventions.
+- **Typography:** Space Grotesk for expressive headlines, Inter for data labels and body copy. Sans-only because this is a high-clarity instrument, not a literary publication.
+- **Section plan:** Hero journey; live air snapshot dashboard; map and report explorer; neighborhood feed; trend analysis; methodology and source transparency. Each uses a distinct composition family.
+- **Asset plan:** Generated cinematic storyboard and hero assets when generation capacity is available; for this build use a custom procedural atmospheric film and hand-authored vector brand assets because image-generation credits are unavailable. Include a custom monogram, map/data iconography, section texture, and OG card.
+- **CTA inventory:** “Explore live air” scrolls to the dashboard; “Use my area” requests browser geolocation only after an explicit click; “Share a neighborhood report” opens the report composer; “View methodology” opens source notes; “Refresh readings” refetches public APIs.
+- **Product scope:** React 19 + TanStack Start SSR website, Cloudflare D1 for public reports/comments with reports held in moderation queue until approved, Open-Meteo modelled air quality and weather APIs, explicit source labels and timestamps, city search, public map, trends, responsive layouts, and privacy-first approximate locations.
+- **Trust contract:** Never invent readings. Official station values appear only when a verified station source returns them; otherwise display “not connected / unavailable” rather than relabeling a model estimate as official. Modelled data is always labeled. Community reports are subjective context, not AQI readings. Public location is coarse by design.
+- **Accessibility:** Semantic headings, keyboard-visible controls, clear text labels in addition to color, reduced-motion support, readable chart values, and responsive touch targets.
+- **Security:** Validate and length-limit public submissions, escape rendered user content, store reports as pending moderation, never collect exact home addresses, and keep secrets server-side.

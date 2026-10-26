@@ -14,15 +14,15 @@ import { NotFound } from "@higgsfield/quanta/not-found";
 import appCss from "../styles.css?url";
 import { reportHiggsfieldError } from "../lib/higgsfield-error-reporting";
 // Page metadata (browser <title>/favicon + social og: tags) committed into the
-// repo by the marketplace meta API and read at BUILD time — no runtime fetch.
+// repo by the marketplace meta API and read at BUILD time - no runtime fetch.
 // Editing it via the app settings UI rewrites this file and redeploys the app.
 import appMetaJson from "../app-meta.json";
 
 declare const __HF_DESIGN_INSPECTOR__: boolean;
 
 // Built-in defaults for any field that isn't set in app-meta.json.
-const DEFAULT_TITLE = "Higgsfield App";
-const DEFAULT_DESCRIPTION = "Higgsfield Generated Project";
+const DEFAULT_TITLE = "AirPulse - Community Air Intelligence";
+const DEFAULT_DESCRIPTION = "Understand local air quality with live model estimates, weather context, verified station data when available, and neighborhood reports.";
 
 type AppMeta = {
   og_title?: string | null;
@@ -31,7 +31,7 @@ type AppMeta = {
   favicon_url?: string | null;
   og_video_url?: string | null;
   // Read by the Higgsfield platform (marketplace feed card), never by the
-  // app itself — keep it in this file, don't render it.
+  // app itself - keep it in this file, don't render it.
   marketplace_cover_url?: string | null;
 };
 
@@ -45,7 +45,7 @@ const appMeta = appMetaJson as AppMeta;
 // it matches the head() shape TanStack expects.
 // favicon/og images live in THIS app's own /assets, so the host is never
 // inherent. app-meta.json may carry an absolute higgsfield-app URL with a STALE
-// host — baked from the app this one was copied/remixed/renamed from — which would
+// host - baked from the app this one was copied/remixed/renamed from - which would
 // serve the wrong app's favicon/og. Strip any higgsfield-app host (prod
 // higgsfield.app + dev higgsfield-dev.app) down to a root-relative path so it
 // always resolves against whoever serves THIS page (preview / prod / custom
@@ -61,9 +61,9 @@ function toOwnAssetUrl(value: string | null | undefined): string | null {
       (zone) => u.hostname === zone || u.hostname.endsWith(`.${zone}`),
     );
     if (isAppHost) return u.pathname + u.search;
-    return value; // external host (CDN, etc.) — keep absolute
+    return value; // external host (CDN, etc.) - keep absolute
   } catch {
-    return value; // not a parseable URL — leave as-is
+    return value; // not a parseable URL - leave as-is
   }
 }
 
@@ -80,25 +80,26 @@ function buildHead(meta: AppMeta) {
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title },
       { name: "description", content: description },
-      { name: "author", content: "Higgsfield" },
+      { name: "author", content: "AirPulse" },
       { property: "og:title", content: title },
       { property: "og:description", content: description },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: ogImage ? "summary_large_image" : "summary" },
-      { name: "twitter:site", content: "@Higgsfield" },
       ...(ogImage
         ? [
             { property: "og:image", content: ogImage },
             { name: "twitter:image", content: ogImage },
           ]
         : []),
-      // Cover video (og:video) — the animated counterpart of og:image; the
+      // Cover video (og:video) - the animated counterpart of og:image; the
       // Higgsfield feed cards also play it on hover.
       ...(ogVideo ? [{ property: "og:video", content: ogVideo }] : []),
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      ...(favicon ? [{ rel: "icon", href: favicon }] : []),
+      ...(favicon ? [{ rel: "icon", href: favicon, type: "image/svg+xml" }] : []),
+      { rel: "apple-touch-icon", href: "/assets/brand/apple-touch-icon.png" },
+      { rel: "manifest", href: "/site.webmanifest" },
     ],
   };
 }

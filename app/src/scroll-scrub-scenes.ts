@@ -1,41 +1,25 @@
-/**
- * Scene data for the scroll-scrub journey — THE file you fill in per build.
- *
- * Single-shot (the default): ONE entry in `scenes`, whose `clip` is the single
- * continuous film. Chapter copy still comes from `chapters` below, rendered as
- * semantic sections over that one clip.
- *
- * Multi-leg (opt-in): one entry per seam-locked leg, in journey order. Every
- * `poster` MUST be the exact first frame of the encoded clip beside it — never
- * a design board or an imagined destination still.
- *
- * Keep this array a module constant. Changing its identity on every render
- * intentionally rebuilds the media controller.
- */
-import type {
-  ScrollScrubScene,
-  ScrollScrubTheme,
-} from "@/components/scroll-scrub/scroll-scrub";
+import type { ScrollScrubScene, ScrollScrubTheme } from "@/components/scroll-scrub/scroll-scrub";
 
-/** Brand tokens for the journey layer. Set these from the design brief. */
 export const scrollScrubTheme: ScrollScrubTheme = {
-  accent: "<accent hex>",
-  background: "<background hex>",
-  ink: "<ink hex>",
-  muted: "<muted ink hex>",
+  accent: "#B7F36B",
+  background: "#101E1B",
+  ink: "#F0F4E9",
+  muted: "#9DAFA2",
 };
 
 export const scrollScrubScenes: ScrollScrubScene[] = [
   {
-    body: "<one sentence that earns the next scroll>",
+    body: "The air around us is always moving. AirPulse brings modelled readings, weather, and neighborhood observations into one clear picture, without confusing estimates with verified station measurements.",
     clip: "/assets/world/scene-01.mp4",
-    id: "scene-01",
-    kicker: "<kicker>",
-    label: "<nav label>",
+    id: "air-signal",
+    kicker: "COMMUNITY AIR INTELLIGENCE",
+    label: "The signal",
     mobileClip: "/assets/world/scene-01-mobile.mp4",
     mobilePoster: "/assets/world/scene-01-mobile-poster.png",
     poster: "/assets/world/scene-01-poster.png",
-    tags: ["<proof tag>"],
-    title: "<scene headline>",
+    tags: ["Live context", "Source-aware", "Community-led"],
+    title: "Know the air.\nShare the signal.",
+    scroll: 2.2,
+    linger: 0.12,
   },
 ];
