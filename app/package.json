@@ -74,6 +74,6 @@
     "vite-plugin-svgr": "^5.2.0"
   },
   "overrides": {
-    "@types/react": "19.2.15"
+  "@types/react": "$@types/react"
   }
 }
