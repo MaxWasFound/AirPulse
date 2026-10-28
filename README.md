@@ -21,7 +21,7 @@
 
 ---
 
-## The idea
+## The Idea
 
 Air pollution isn't just a number on a screen. It's the haze above a street, the dust around a construction site, and the air people experience in their own neighborhoods.
 
@@ -30,6 +30,20 @@ Air pollution isn't just a number on a screen. It's the haze above a street, the
 It brings together modeled air-quality estimates, current weather context, an interactive map, and community observations in one experience — while clearly distinguishing modeled data from verified monitoring-station measurements.
 
 > **One location. Multiple signals. Clearer context.**
+> 
+> ## 📸 Screenshots
+
+### AirPulse Dashboard
+![AirPulse dashboard](screenshots/dashboard.png)
+
+### Air Quality Forecast & Trends
+![AirPulse forecast and trends](screenshots/forecast.png)
+
+### Community Reports
+![AirPulse community reports](screenshots/community-reports.png)
+
+[**🌐 Try AirPulse Live →**](https://airpulse.moinacksaha66.workers.dev)
+
 
 ## ✨ What makes AirPulse different?
 
