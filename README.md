@@ -30,8 +30,8 @@ Air pollution isn't just a number on a screen. It's the haze above a street, the
 It brings together modeled air-quality estimates, current weather context, an interactive map, and community observations in one experience — while clearly distinguishing modeled data from verified monitoring-station measurements.
 
 > **One location. Multiple signals. Clearer context.**
-> 
-> ## 📸 Screenshots
+
+## 📸 Screenshots
 
 ### AirPulse Dashboard
 ![AirPulse dashboard](screenshots/dashboard.png)
