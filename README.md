@@ -16,7 +16,7 @@
 <p align="center">
   <a href="https://airpulse.moinacksaha66.workers.dev"><strong>🚀 Explore the Live Website</strong></a>
   &nbsp; · &nbsp;
-  <a href="https://github.com/Moinack66/AirPulse"><strong>⭐ Explore the Source Code</strong></a>
+  <a href="https://github.com/MaxWasFound/AirPulse"><strong>⭐ Explore the Source Code</strong></a>
 </p>
 
 ---
@@ -78,7 +78,7 @@ Visit the live application to explore the dashboard, search for a location, insp
 
 **Live application:** https://airpulse.moinacksaha66.workers.dev
 
-**Source repository:** https://github.com/Moinack66/AirPulse
+**Source repository:** https://github.com/MaxWasFound/AirPulse
 
 ---
 
@@ -207,7 +207,7 @@ Never publish the moderator key in a README, source file, screenshot or public i
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/Moinack66/AirPulse.git
+git clone https://github.com/MaxWasFound/AirPulse.git
 cd AirPulse/app
 ```
 
